@@ -117,6 +117,28 @@ router.get('/get/count',(req,res)=>{
 
 
 
+router.get('/get/featured',(req,res)=>{
+    Product.find({isFeatured:true})
+   .then(products=>{
+
+       console.log(products);
+       if(!products){
+           res.status(500).json({success: false})
+       }
+       res.send(products)
+
+   }).catch(err=>{
+       return res.status(404).json({sucess:false,error:err})
+   })
+
+   
+
+});
+
+
+
+
+
 
 
 module.exports =router;
